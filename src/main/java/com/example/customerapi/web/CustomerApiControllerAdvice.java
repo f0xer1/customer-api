@@ -1,6 +1,7 @@
 package com.example.customerapi.web;
 
 
+import com.example.customerapi.exception.CustomerAlreadyExistsException;
 import com.example.customerapi.web.dto.ExceptionResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,13 +22,13 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class CustomerApiControllerAdvice {
     /**
-     * Handles IllegalArgumentException and other RuntimeExceptions.
+     * Handles IllegalArgumentException, CustomerAlreadyExistsException and other RuntimeExceptions.
      * Returns a 400 Bad Request response with an ExceptionResponse object containing the exception message.
      *
      * @param exception The RuntimeException that was thrown.
      * @return A ResponseEntity with the ExceptionResponse object and HTTP status 400 Bad Request.
      */
-    @ExceptionHandler(IllegalArgumentException.class)
+    @ExceptionHandler({IllegalArgumentException.class, CustomerAlreadyExistsException.class})
     public ResponseEntity<ExceptionResponse> handleBadRequest(RuntimeException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(exceptionResponse(exception.getMessage()));

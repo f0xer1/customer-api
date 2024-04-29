@@ -23,4 +23,25 @@ public interface CustomerRepository extends JpaRepository<Customer, Long> {
      * @return An Optional containing the Customer entity if found, or empty otherwise.
      */
     Optional<Customer> findByIdAndIsActiveTrue(Long id);
+    /**
+     * Retrieves a Customer entity by the full name.
+     *
+     * @param fullName The full name of the customer.
+     * @return An Optional containing the Customer entity if found, or empty otherwise.
+     */
+    Optional<Customer> findByFullName(String fullName);
+    /**
+     * Retrieves a Customer entity by the email address.
+     *
+     * @param email The email address of the customer.
+     * @return An Optional containing the Customer entity if found, or empty otherwise.
+     */
+    Optional<Customer> findByEmail(String email);
+    /**
+     * Retrieves a Customer entity by the email address.
+     *
+     * @param phone The phone number of the customer.
+     * @return An Optional containing the Customer entity if found, or empty otherwise.
+     */
+    Optional<Customer>  findByPhone(String phone);
 }
